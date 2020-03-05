@@ -4,6 +4,7 @@ import cn.xpbootcamp.tennis.TennisGame;
 
 public class TennisGame3 implements TennisGame {
 
+    private static final String DEUCE = "Deuce";
     private int player1;
     private int player2;
     private String player1Name;
@@ -15,17 +16,22 @@ public class TennisGame3 implements TennisGame {
     }
 
     public String getScore() {
-        String s;
         if (player1 < 4 && player2 < 4 && !(player1 + player2 == 6)) {
             String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
-            s = p[player1];
-            return (player1 == player2) ? s + "-All" : s + "-" + p[player2];
+            return (player1 == player2) ? p[player1] + "-All" : p[player1] + "-" + p[player2];
         } else {
-            if (player1 == player2)
-                return "Deuce";
-            s = player1 > player2 ? player1Name : player2Name;
-            return ((player1 - player2)*(player1 - player2) == 1) ? "Advantage " + s : "Win for " + s;
+            return (player1 == player2) ?
+                    DEUCE
+                    : getResult();
         }
+    }
+
+    private String getResult() {
+        return ((player1 - player2) * (player1 - player2) == 1) ? "Advantage " + getPlayerName() : "Win for " + getPlayerName();
+    }
+
+    private String getPlayerName() {
+        return player1 > player2 ? player1Name : player2Name;
     }
 
     public void wonPoint(String playerName) {
@@ -33,7 +39,6 @@ public class TennisGame3 implements TennisGame {
             this.player1 += 1;
         else
             this.player2 += 1;
-
     }
 
 }

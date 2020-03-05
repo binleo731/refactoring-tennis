@@ -33,7 +33,7 @@ public class TennisGame2 implements TennisGame {
             return "Advantage player2";
         }
 
-        if (isSamePoint()) return "Deuce";
+        if (isSamePoint() && P1point >=3) return "Deuce";
 
         return null;
     }

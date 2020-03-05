@@ -7,11 +7,19 @@ public class TennisGame2 implements TennisGame {
     private int P1point = 0;
     private int P2point = 0;
 
-    private String P1res = "";
-    private String P2res = "";
-
     public String getScore() {
+        if (getWinResult() != null) return getWinResult();
 
+        return isSamePoint()
+                ? getPlayerScore(P1point) + "-All"
+                : getPlayerScore(P1point) + "-" + getPlayerScore(P2point);
+    }
+
+    private boolean isSamePoint() {
+        return P1point == P2point;
+    }
+
+    private String getWinResult() {
         if (P1point >= 4 && P2point >= 0 && (P1point - P2point) >= 2) {
             return "Win for player1";
         }
@@ -25,11 +33,9 @@ public class TennisGame2 implements TennisGame {
             return "Advantage player2";
         }
 
-        if (P1point == P2point && P1point >= 3) return "Deuce";
+        if (isSamePoint()) return "Deuce";
 
-        if (P1point == P2point) return getPlayerScore(P1point) + "-All";
-
-        return getPlayerScore(P1point) + "-" + getPlayerScore(P2point);
+        return null;
     }
 
     private String getPlayerScore(int player) {

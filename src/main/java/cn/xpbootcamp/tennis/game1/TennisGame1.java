@@ -9,14 +9,14 @@ public class TennisGame1 implements TennisGame {
 
     public void wonPoint(String playerName) {
         if (playerName.equals("player1"))
-            score1 += 1;
+            score1++;
         else
-            score2 += 1;
+            score2++;
     }
 
     public String getScore() {
         if (score1 == score2) {
-            return getAllScore();
+            return getDrawScore();
         } else if (score1 >= 4 || score2 >= 4) {
             return getWinResult();
         } else {
@@ -60,7 +60,7 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    private String getAllScore() {
+    private String getDrawScore() {
         switch (score1) {
             case 0:
                 return "Love-All";

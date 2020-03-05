@@ -3,6 +3,7 @@ package cn.xpbootcamp.tennis.game2;
 import cn.xpbootcamp.tennis.TennisGame;
 
 public class TennisGame2 implements TennisGame {
+    public static final String PLAYER_NAME = "player1";
     private int P1point = 0;
     private int P2point = 0;
 
@@ -86,22 +87,6 @@ public class TennisGame2 implements TennisGame {
         return score;
     }
 
-    public void SetP1Score(int number) {
-
-        for (int i = 0; i < number; i++) {
-            P1Score();
-        }
-
-    }
-
-    public void SetP2Score(int number) {
-
-        for (int i = 0; i < number; i++) {
-            P2Score();
-        }
-
-    }
-
     private void P1Score() {
         P1point++;
     }
@@ -111,7 +96,7 @@ public class TennisGame2 implements TennisGame {
     }
 
     public void wonPoint(String player) {
-        if (player.equals("player1"))
+        if (player.equals(PLAYER_NAME))
             P1Score();
         else
             P2Score();
